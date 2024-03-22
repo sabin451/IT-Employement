@@ -1,0 +1,49 @@
+<!-- admin_dashboard.html -->
+{% extends 'adminnav.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+<h2>User Approval Dashboard</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Approval Status</th> 
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user_profile in users_to_approve %}
+            <tr>
+                <td>{{ user_profile.id }}</td>
+                <td>{{ user_profile.username }}</td>
+                <td>{{ user_profile.email }}</td>
+                <td>{% if user_profile.is_approved %}Approved{% else %}Not Approved{% endif %}</td>
+                <td>
+                    <form method="post" action="{% url 'approve_user' user_profile.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Approve</button>
+                    </form>
+                    <form method="post" action="{% url 'disapprove_user' user_profile.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Disapprove</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
+{% endblock %}

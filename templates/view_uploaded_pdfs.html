@@ -1,0 +1,31 @@
+<!-- templates/view_uploaded_pdfs.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uploaded PDFs</title>
+</head>
+<body>
+    {% if module %}
+        <h1>Uploaded PDFs for Module: {{ module.module_name }}</h1>
+
+        {% if progress_updates %}
+            {% for update in progress_updates %}
+                <div>
+                    <p>Date: {{ update.date }}</p>
+                    <p>Update Text: {{ update.update_text }}</p>
+                    {% if update.attachments %}
+                        <p>Attachment: <a href="{{ update.attachments.url }}" target="_blank">View PDF</a></p>
+                    {% endif %}
+                    <hr>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No progress updates available for this module.</p>
+        {% endif %}
+    {% else %}
+        <p>No module assigned to the logged-in user.</p>
+    {% endif %}
+</body>
+</html>
+

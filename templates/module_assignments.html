@@ -1,0 +1,27 @@
+<!-- module_assignments.html -->
+{% extends 'developernav.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Module Assignments</title>
+</head>
+<body>
+
+<!-- Your content on module_assignments.html -->
+
+<h1>Your Project Modules</h1>
+
+{% for project_module in user_project_modules %}
+    <div>
+        <h1>{{developer.username }}</h1>
+        <h2>{{ project_module.module_name }}</h2>
+        <p>Start Date: {{ project_module.start_date }}</p>
+        <p>End Date: {{ project_module.end_date }}</p>
+        <!-- Add other fields as needed -->
+    </div>
+{% endfor %}
+
+</body>
+</html>
+{% endblock %}

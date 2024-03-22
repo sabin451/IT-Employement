@@ -1,0 +1,34 @@
+{% extends 'tlnav.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Team Lead Home</title>
+    <style>
+        
+        body {
+  background: linear-gradient(to right, #1e5799 0%, #2ce0bf 19%, #76dd2c 40%, #dba62b 60%, #e02cbf 83%, #1e5799 100%);
+  background-size: 10000px 100%;
+  animation: bg 15s linear infinite;
+}
+
+@keyframes bg {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 10000px;
+  }
+}
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ team_lead.username }} (Team Lead)!</h1>
+
+
+<li><a href="{% url 'profile' %}">Show Profile</a></li>
+
+</body>
+</html>
+{% endblock %}

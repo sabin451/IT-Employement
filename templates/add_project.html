@@ -1,0 +1,63 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Project</title>
+</head>
+<body>
+
+    <h1>Add Project</h1>
+
+    <form method="post" action="{% url 'add_project' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="client_details">Client Details:</label>
+        <input type="text" name="client_details" required>
+
+        <label for="project_name">Project Name:</label>
+        <input type="text" name="project_name" required>
+
+        <label for="description">Description:</label>
+        <textarea name="description" required></textarea>
+
+        <label for="requirements">Requirements:</label>
+        <textarea name="requirements" required></textarea>
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" required>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" required>
+
+        <label for="attachments">Attachments:</label>
+        <input type="file" name="attachments">
+<!-- 
+        <label for="assigned_tl">Assigned Team Lead:</label>
+        <select name="assigned_tl" required>
+            <option value="" disabled selected>Select Team Lead</option>
+            {% for tl in assigned_tls %}
+                <option value="{{ tl.id }}">{{ tl.username }}</option>
+            {% endfor %}
+        </select> -->
+
+
+        <label for="project_status">Project Status:</label>
+        <input type="text" name="project_status" required>
+<!-- 
+        <label for="department">Department:</label>
+        <select name="department" required>
+            <option value="" disabled selected>Select Department</option>
+            {% for dept in departments %}
+                <option value="{{ dept.id }}">{{ dept.name }}</option>
+            {% endfor %}
+        </select> -->
+
+        <button type="submit">Add Project</button>
+    </form>
+
+</body>
+</html>
+{% endblock %}

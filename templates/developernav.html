@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TASK MANAGEMENT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200;300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<style>
+    body{
+      background-image:url("{% static 'image/allback.jpg' %}");
+      background-size: cover;
+      background-position: center;
+    }
+    .vrnav{
+      height:100%;
+      width:200px;
+      background-color:white;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: absolute;
+      margin-top:0px;
+      top:0px;
+      padding-top:0px;
+      transition: 1.8s;
+      left:0px;
+      z-index:20;
+    }
+    .vrnav ul{
+      list-style:none;
+      padding: 0px;
+      
+    }
+    .vrnav li{
+      padding:15px;
+      border-bottom:1px solid black;
+      text-align: center;
+      display: block;
+    }
+    .vrnav a{
+      text-decoration:none;
+      color:black;
+      font-family: 'Anton', sans-serif;
+      font-family: 'Oswald', sans-serif;
+      font-size:larger;
+
+    }
+    .vrnav a:hover{
+      color:rgb(177, 3, 3);
+      transition-duration: 0.2s;
+    }
+    .hrnav{
+      background-color:wheat;
+      height:100px;
+      top:0px;
+      margin-top:-13px;
+      transition:2.0s;
+    }
+    .hrnav ul{
+      list-style:none ;
+      padding:20px;
+      padding-top:30px;
+    }
+    .hrnav li{
+      display: inline;
+      padding:10px;
+      padding-right:17px;
+      
+    }
+    /* @media(max-width:700px){
+      #cardgroup1{
+        width:130px;
+      }
+      } */
+    
+  </style>
+  
+</head>
+<body >
+  
+ <nav class="vrnav" id="vrnav">
+  <ul>
+    <li style="text-align:right;">
+      <button type="button" class="btn btn-danger"  style="border-radius: 25px; border-color:red;" onclick="closemenu()">close</button>
+    </li>
+    <li>
+      <a href="{% url 'developer_home' %}">HOME</a>
+    </li>
+    <li>
+      <a href="{% url 'module_assignments' %}">View Module</a>
+    </li>
+ 
+      <li><a href="{% url 'add_progress_update'  %}">Add Progress Update</a></li>
+    <li>
+      <a href="{% url 'view_uploaded_files' %}">View Uploaded PDFs</a>
+    </li>
+
+  </ul>
+ </nav>
+<nav class="hrnav" id="hrnav">
+  <li style="margin-left: 10px;">
+    <button type="button" class="btn btn-primary"  onclick="openmenu()"><i class="fa-solid fa-bars"></i> &nbsp; MENU</button>
+  </li>
+  <ul style="display: inline-block">
+    <img src="{% static "images/logo.png" %}" style="width:50px; height:50px; border-radius: 35px;">  </ul>
+ 
+  <ul style="float:right;  display: inline;">
+    <a href="{% url 'view_notifications' %}">Notifications {{ unseen_count }}</a>
+    
+
+    <li class="nav-item dropdown">
+      <a class=" dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-user"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-left dropdown-menu-right">
+      <a class="nav-link" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket fa-fade"></i>logout</a>
+    </div>
+    </li>
+  </ul>
+  
+
+</nav>
+
+<script>
+  function closemenu(){
+    document.getElementById('vrnav').style.marginLeft = "-200px";
+    document.getElementById('hrnav').style.marginLeft ='-10px';
+   
+ 
+  }
+  function openmenu(){
+    document.getElementById('vrnav').style.marginLeft = "0px";
+    document.getElementById('hrnav').style.marginLeft ='-4px';
+   
+ 
+  }
+
+</script>
+<div class="container">
+  {% block content %}
+  {% endblock %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Daily Progress</title>
+</head>
+<body>
+
+<h2>Upload Daily Progress</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="update_text">Update Text:</label>
+    <textarea id="update_text" name="update_text" rows="4" required></textarea>
+
+    <br>
+
+    <label for="attachments">Attachments (optional):</label>
+    <input type="file" id="attachments" name="attachments">
+
+    <br>
+
+    <button type="submit">Upload Progress</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!-- view_uploaded_files.html -->
+{% extends 'developernav.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Uploaded Files</title>
+</head>
+<body>
+
+<h1>Uploaded Files</h1>
+
+{% if uploaded_files %}
+    <ul>
+        {% for progress_update in uploaded_files %}
+            <li>
+                <p>Module: {{ progress_update.module.module_name }}</p>
+                <p>Date: {{ progress_update.date }}</p>
+                <p>Update Text: {{ progress_update.update_text }}</p>
+                {% if progress_update.attachments %}
+                    <p>Attachments: <a href="{{ progress_update.attachments.url }}" target="_blank">{{ progress_update.attachments.name }}</a></p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No uploaded files found.</p>
+{% endif %}
+
+</body>
+</html>
+{% endblock %}

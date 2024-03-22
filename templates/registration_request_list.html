@@ -1,0 +1,27 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<h1>Registration Requests</h1>
+
+<p>Number of Unapproved Requests: {{ unapproved_count }}</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>User Name</th>
+      <th>Is Approved</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for request in registration_requests %}
+      <tr>
+        <td>{{ request.user.id }}</td>
+        <td>{{ request.user.username }}</td>
+        <td>{{ request.is_approved }}</td>
+        <td>{{ request.created_at }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

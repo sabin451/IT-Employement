@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>View Project Status</title>
+</head>
+<body>
+    <h1>View Project Status for {{ tl.username }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="developer">Select Developer:</label>
+        <select name="developer" id="developer">
+            <option value="" disabled selected>Select a developer</option>
+            {% for developer in developers %}
+                <option value="{{ developer.id }}">{{ developer.username }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="module">Select Project Module:</label>
+        <select name="module" id="module">
+            <option value="" disabled selected>Select a module</option>
+            
+        </select>
+
+        <input type="submit" value="View Project Status">
+    </form>
+</body>
+</html>

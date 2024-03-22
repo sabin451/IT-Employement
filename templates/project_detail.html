@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Detail</title>
+    <!-- Add your stylesheet link here -->
+    <!-- <link rel="stylesheet" href="your_stylesheet.css"> -->
+</head>
+<body>
+
+    <header>
+        <h1>Project Detail</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Assigned Projects</h2>
+            <ul>
+                {% for project_assignment in assigned_projects %}
+                    <li>
+                        <h3>{{ project_assignment.project.project_name }}</h3>
+                        <p>Description: {{ project_assignment.project.description }}</p>
+                        
+                        <h4>Assigned Modules:</h4>
+                        <ul>
+                            {% for module in project_assignment.project.modules.all %}
+                                <li>
+                                    <h5>{{ module.module_name }}</h5>
+                                    <p>Start Date: {{ module.start_date }}</p>
+                                    <p>End Date: {{ module.end_date }}</p>
+                                    <!-- Add more module details as needed -->
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        
+
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright © 2023 Your Company</p>
+    </footer>
+
+
+
+</body>
+</html>

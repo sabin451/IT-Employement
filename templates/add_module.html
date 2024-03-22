@@ -1,0 +1,47 @@
+<!-- add_module.html -->
+{% extends 'tlnav.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Module</title>
+</head>
+<body>
+
+<h2>Add Module</h2>
+
+<form method="post" action="{% url 'add_module1' %}">
+    {% csrf_token %}
+
+    <label for="project">Select Project:</label>
+    <select id="project" name="project" required>
+        {% for project in projects %}
+            <option value="{{ project.id }}">{{ project.project_name }}</option>
+        {% endfor %}
+    </select><br>
+    
+
+    <label for="module_name">Module Name:</label>
+    <input type="text" id="module_name" name="module_name" required><br>
+
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" name="start_date" required><br>
+
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" name="end_date" required><br>
+
+    <label for="assigned_developer">Assigned Developer:</label>
+    <select id="assigned_developer" name="assigned_developer" required>
+        {% for developer in developers %}
+            <option value="{{ developer.id }}">{{ developer.get_full_name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <button type="submit">Add Module</button>
+</form>
+
+</body>
+</html>
+{% endblock %}

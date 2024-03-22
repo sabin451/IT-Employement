@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Project Status</title>
+</head>
+<body>
+    <h1>Project Status for {{ selected_developer.username }}</h1>
+    <h2>Module: {{ module.module_name }}</h2>
+
+    <ul>
+        {% for update in updates %}
+            <li>
+                <p>Date: {{ update.date }}</p>
+                <p>Update: {{ update.update_text }}</p>
+            
+                {% if update.attachments %}
+                    <a href="{{ update.attachments.url }}" download>Download Work File</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 50px;
+            background-color: #fff;
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0099cc;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #007acc;
+        }
+
+        .signup {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .signup a {
+            color: #0099cc;
+            text-decoration: none;
+        }
+
+        .signup a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <form class="mx-auto d-block" action="{% url 'doLogin' %}">
+          <h3 class="h4 bg-primary" style="text-align: center; border-radius: 5px;">LOGIN</h3>
+          <div class="form-group">
+              <input type="text" name="username" class="form-control" placeholder="username">
+          </div>
+          <div class="form-group">
+              <input type="password" name="password" class="form-control" placeholder="PASSWORD">
+          </div>
+          <button type="submit" class="btn btn-primary form-control">LOGIN</button> <br><br>
+        
+      </form>
+        <div class="signup">
+            <p>Don't have an account? <a href="#">Signup</a></p>
+        </div>
+    </div>
+</body>
+</html>

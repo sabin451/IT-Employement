@@ -1,0 +1,46 @@
+<!-- assigned_projects.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assigned Projects for {{ tl.username }}</title>
+</head>
+
+<body>
+    <h1>Assigned Projects for {{ tl.username }}</h1>
+
+    {% if assigned_projects %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Client</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in assigned_projects %}
+                    <tr>
+                        <td>{{ project.project.name }}</td>
+                        <td>{{ project.project.client }}</td>
+                        <td>{{ project.start_date }}</td>
+                        <td>{{ project.end_date }}</td>
+                        <td>{{ project.department.name }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No projects assigned to {{ tl.username }}.</p>
+    {% endif %}
+</body>
+
+</html>
+
+

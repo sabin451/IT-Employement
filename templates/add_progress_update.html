@@ -1,0 +1,33 @@
+<!-- add_progress_update.html -->
+{% extends 'developernav.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Progress Update</title>
+</head>
+<body>
+
+<h1>Add Progress Update for Module</h1>
+
+
+<form method="post" enctype="multipart/form-data" action="{% url 'add_progress_update' %}">
+    {% csrf_token %}
+    <!-- Add a hidden input field for module_id -->
+    <select name="module_id" required>
+        {% for module in modules %}
+            <option value="{{ module.id }}">{{ module.module_name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label for="update_text">Update Text:</label>
+    <textarea name="update_text" required></textarea><br>
+
+    <!-- Your form fields here -->
+    <input type="file" name="attachments">
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
+{% endblock %}

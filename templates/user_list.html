@@ -1,0 +1,51 @@
+
+{% extends 'adminnav.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+<h2>User Approval Dashboard</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+ 
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user_profile in departments %}
+            <tr>
+                <td>{{ user_profile.id }}</td>
+                <td>{{ user_profile.username }}</td>
+                <td>{{ user_profile.email }}</td>
+  
+                <td>
+
+                    <li>
+                        
+                        {% if user_profile.user_type == '3' %}
+                            <a href="{% url 'promote_user' user_profile.id %}">Promote to TL</a>
+                        {% elif user_profile.user_type == '2' %}
+                            <a href="{% url 'demote_user' user_profile.id %}">Demote to Developer</a>
+                        {% endif %}
+                        <a href="{% url 'remove_user' user_profile.id %}">Remove</a>
+                    </li>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
+{% endblock %}

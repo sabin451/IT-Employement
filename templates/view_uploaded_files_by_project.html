@@ -1,0 +1,45 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Uploaded Files by Project</title>
+</head>
+<body>
+    <h2>Select Project</h2>
+    <form method="post" action="{% url 'view_uploaded_files_by_project' %}">
+        {% csrf_token %}
+        <label for="project">Select Project:</label>
+        <select name="project" required>
+            <option value="" disabled selected>Select a project</option>
+            {% for project in projects %}
+                <option value="{{ project.id }}">{{ project.project_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">View Uploaded Files</button>
+    </form>
+
+    {% if selected_project %}
+        <h3>Uploaded Files for Project: {{ selected_project.project_name }}</h3>
+        {% if uploaded_files %}
+            <ul>
+                {% for file in uploaded_files %}
+                    <li>
+                        <strong>Date:</strong> {{ file.date }}<br>
+                        <strong>Update Text:</strong> {{ file.update_text }}<br>
+                        {% if file.attachments %}
+                            <a href="{{ file.attachments.url }}" target="_blank">View Attachment</a><br>
+                        {% endif %}
+                        <hr>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No uploaded files for this project.</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
+{% endblock %}

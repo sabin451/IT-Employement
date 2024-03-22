@@ -1,0 +1,97 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Home</title>
+    <style>
+        /* Your CSS styles remain unchanged */
+        .container {
+            margin: 50px auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-section {
+            margin-top: 20px;
+        }
+
+        .article {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+<!-- <a href="{% url 'add_department' %}">Add Department</a><br>
+   
+<a href="{% url 'add_project' %}">Add Project</a><br>
+<a href="{% url 'assign_project' %}">Assign Project</a><br>
+
+
+<a href="{% url 'project_list' %}">View Project List</a><br>
+
+<a href="{% url 'admin_dashboard' %}">Approve List</a><br>
+<a href="{% url 'user_list' %}">User List</a><br>
+
+<a href="{% url 'registration_requests_list' %}">
+    Registration Requests ({% if unapproved_count > 0 %}{{ unapproved_count }}{% endif %})
+</a>
+<a href="{% url 'view_uploaded_files_by_project' %}">View Uploaded Files by Project</a>
+<li><a href="{% url 'logout' %}">Logout</a></li> -->
+
+<h1>Welcome, Admin!</h1><!-- Your existing content -->
+<div class="container">
+
+        <!-- Live Technology News Section -->
+        <div class="news-section">
+            <h2>News</h2>
+
+            <div id="liveNews"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function fetchNews() {
+            // Fetch news from the specified URL
+            fetch('https://www.indiatoday.in/technology/news')
+                .then(response => response.text())
+                .then(data => {
+                    // Parse the HTML content
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+
+                    // Extract news articles
+                    const articles = [];
+                    const newsElements = doc.querySelectorAll('.view-content h2 a');
+                    newsElements.forEach(element => {
+                        articles.push({
+                            title: element.textContent.trim(),
+                            link: element.getAttribute('href')
+                        });
+                    });
+
+                    // Display the news in the container
+                    const liveNewsContainer = document.getElementById('liveNews');
+                    liveNewsContainer.innerHTML = '';
+                    articles.forEach(article => {
+                        const newsItem = document.createElement('div');
+                        newsItem.innerHTML = `<a href="${article.link}" target="_blank">${article.title}</a>`;
+                        liveNewsContainer.appendChild(newsItem);
+                    });
+                })
+                .catch(error => console.error('Error fetching news:', error));
+        }
+
+        // Fetch news initially and then every 60 seconds
+        fetchNews();
+        setInterval(fetchNews, 60000);
+    </script>
+{% endblock %}

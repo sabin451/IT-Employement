@@ -1,0 +1,25 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Project List</title>
+</head>
+<body>
+    <h1>Project List</h1>
+    <ul>
+        {% for project in projects %}
+            <li>
+                <h2>{{ project.project_name }}</h2>
+                <p>Client: {{ project.client_details }}</p>
+                <p>Description: {{ project.description }}</p>
+                <p>Start Date: {{ project.start_date }}</p>
+                <p>End Date: {{ project.end_date }}</p>
+                
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+{% endblock %}

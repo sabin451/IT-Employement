@@ -1,0 +1,49 @@
+{% extends 'tlnav.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modules Assigned to Team Lead</title>
+</head>
+<body>
+    <h1>Modules Assigned to Team Lead</h1>
+
+    <p>Welcome, {{ user.username }}!</p>
+
+    <h2>Modules Assigned to Team Lead's Department</h2>
+
+    {% if modules_by_tl %}
+        <ul>
+            {% for module in modules_by_tl %}
+                <li>
+                    <strong>Module Name:</strong> {{ module.module_name }}<br>
+                    <strong>Assigned Developer:</strong> {{ module.assigned_developer.first_name }} {{ module.assigned_developer.last_name }}<br>
+                    <strong>Start Date:</strong> {{ module.start_date }}<br>
+                    <strong>End Date:</strong> {{ module.end_date }}<br>
+
+                    {% if progress_updates %}
+                        <h3>Progress Updates:</h3>
+                        <ul>
+                            {% for update in progress_updates %}
+                                {% if update.module == module %}
+                                    <li>
+                                        <strong>Date:</strong> {{ update.date }}<br>
+                                        <strong>Update Text:</strong> {{ update.update_text }}<br>
+                                        {% if update.attachments %}
+                                            <a href="{{   update.attachments.url }}">View Attachment</a><br>
+                                        {% endif %}
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No modules assigned to Team Lead's department.</p>
+    {% endif %}
+</body>
+</html>
+{% endblock %}

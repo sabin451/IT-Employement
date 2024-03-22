@@ -1,0 +1,71 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Department</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url("your-background-image.jpg") center/cover no-repeat; /* Replace "your-background-image.jpg" with your actual image URL */
+        }
+
+        .container {
+            margin-top: 5%;
+            background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+    
+
+
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: grey;
+            border-radius: 20%;
+            color: #fff;
+        }
+           /* CSS for header */
+
+ 
+    </style>
+</head>
+<body>
+
+    <div >
+        <h1>Add Department</h1>
+
+        <!-- Department Form -->
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="department_name">Department Name:</label>
+                <input type="text" id="department_name" name="department_name" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Department</button>
+        </form>
+
+        <!-- List of Departments -->
+        <h2>Departments:</h2>
+        <ul>
+            {% for department in departments %}
+                <li>{{ department.name }}</li>
+            {% empty %}
+                <li>No departments added yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
+{% endblock %}

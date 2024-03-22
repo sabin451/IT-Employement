@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Progress History</title>
+</head>
+<body>
+    <h1>Progress History for {{ developer.username }}</h1>
+    <h2>Module: {{ module.module_name }}</h2>
+
+    <ul>
+        {% for update in progress_updates %}
+            <li>
+                <p>Date: {{ update.date }}</p>
+                <p>Update: {{ update.update_text }}</p>
+                {% if update.attachments %}
+                    <a href="{{ update.attachments.url }}" download>Download Work File</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
